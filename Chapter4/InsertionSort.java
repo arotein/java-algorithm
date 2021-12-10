@@ -1,13 +1,6 @@
 package Chapter4;
 
-public class InsertionSort {
-    public void printArray(int... a) {
-        for (int e : a) {
-            System.out.printf("[%d]", e);
-        }
-        System.out.println();
-    }
-
+public class InsertionSort extends PrintArray {
     public void run(int... a) {
         int temp, out, in;
 
