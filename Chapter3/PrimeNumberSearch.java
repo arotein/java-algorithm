@@ -7,88 +7,75 @@ import java.io.Writer;
 import java.util.Scanner;
 
 public class PrimeNumberSearch {
-    //  특정한 수가 소수인지 체크 (2부터 절반까지 찾음)
-    public void run() {
-        Scanner scn = new Scanner(System.in);
-        System.out.printf("2이상의 정수를 입력 : ");
-        long num = scn.nextLong();
-        scn.close();
-        long primeFactor = 1;
-        boolean prime = true;
-
-        long start = System.nanoTime();
-        for (long i = 2; i <= (long) Math.sqrt(num) + 1; i++) {
-            if (num % i == 0) {
-                prime = false;
-                primeFactor = i;
-                break;
-            }
-        }
-        long end = System.nanoTime();
-
-        if (prime == false) {
-            System.out.println(num + "은 합성수");
-            System.out.printf("%d * %d = %d\n", primeFactor, num / primeFactor, num);
-        } else {
-            System.out.println(num + "은 소수");
-        }
-        System.out.println("소요시간 : " + (end - start) + "ns");
-
-    }
-
+    //num은 2 이상의 정수
     public boolean checkPrime(long num) {
-        boolean prime = true;
-
-        for (long i = 2; i <= (long) Math.sqrt(num) + 1; i++) {
+        if (num == 2) {
+            return true;
+        }
+        for (long i = 2L; i <= (long) Math.sqrt(num) + 1; i++) {
             if (num % i == 0) {
-                prime = false;
-                break;
+                return false;
             }
         }
-        if (prime) {
-            return true;
+        return true;
+    }
+
+    //num이 합성수 일 때 소인수를 찾음
+    public void getPrimeFactor(long num) {
+        if (checkPrime(num)) {
+            System.out.printf("%d : 소수\n", num);
         } else {
-            return false;
+            System.out.printf("%d : 합성수\n", num);
+            for (long i = 2L; i <= (long) Math.sqrt(num) + 1; i++) {
+                if (num % i == 0) {
+                    System.out.printf("%d x %d\n", i, num / i);
+                }
+            }
         }
     }
 
-    //    2부터 특정 수 까지 모든 소수를 찾아 메모장에 저장
-    public void run2() {
-        Scanner scn = new Scanner(System.in);
-        System.out.printf("4이상의 정수를 입력 : ");
-        long num = scn.nextLong();
-        scn.close();
+    //1부터 num까지의 정수 중 소수를 출력
+    public void printPrime(long num) {
+        for (long i = 2L; i <= num; i++) {
+            if (checkPrime(i)) {
+                System.out.printf("%d\n", i);
+            }
+        }
+    }
 
-        String filePath = "C:/Users/Chanu/Desktop/Temp/";
-        String fileName = "1부터 " + num + "까지 소수.txt";
+    //1부터 num까지의 정수 중 소수를 .txt파일로 저장
+    public void savePrime(int num) {
+        String fileName = "1부터 " + num + "까지의 소수.txt";
 
-        File file = new File(filePath + fileName);
+        //저장경로 재설정 필요
+        String savePath = "C:/Users/9cksq/Desktop/temp/";
+
+        File file = new File(savePath + fileName);
         try {
             if (file.exists()) {
                 file.delete();
             } else {
                 file.createNewFile();
             }
+
             Writer writer = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(writer);
-            bw.write("2\n");
-            bw.write("3\n");
 
-            long start = System.nanoTime();
-            for (long k = 4; k <= num; k++) {
-                boolean result = checkPrime(k);
-                if (result) {
-                    bw.write(String.valueOf(k));
+            bw.write("<1부터 " + num + "까지의 소수>");
+            bw.newLine();
+            for (int i = 2; i <= num; i++) {
+                if (checkPrime(i)) {
+                    bw.write(String.valueOf(i));
                     bw.newLine();
                 }
             }
             bw.flush();
             bw.close();
             writer.close();
-            long end = System.nanoTime();
-            System.out.println("소요시간 : " + (float) (end - start) / 1000000000 + "s");
+            System.out.println("저장완료");
+
         } catch (Exception e) {
-            System.out.println("오류발생");
+            System.out.println("에러발생");
         }
     }
 }

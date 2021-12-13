@@ -4,7 +4,7 @@ public class SelectionSort extends PrintArray {
     public void run(int... a) {
         int temp, minIndex;
         System.out.println("정렬 전 배열");
-        printArray(a);
+        printIntArray(a);
 
         for (int out = 0; out < a.length - 1; out++) {
             minIndex = out;
@@ -19,6 +19,6 @@ public class SelectionSort extends PrintArray {
         }
 
         System.out.println("선택정렬 후 배열");
-        printArray(a);
+        printIntArray(a);
     }
 }

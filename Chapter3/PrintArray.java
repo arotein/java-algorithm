@@ -1,4 +1,4 @@
-package Chapter4;
+package Chapter3;
 
 class PrintArray {
     public void printIntArray(int... a) {

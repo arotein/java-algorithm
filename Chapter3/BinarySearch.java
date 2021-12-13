@@ -2,28 +2,28 @@ package Chapter3;
 
 import java.util.Scanner;
 
-public class BinarySearch {
-    public void run() {
-        int[] a = {39, 41, 53, 55, 68, 72, 84, 88, 92, 97};
+public class BinarySearch extends PrintArray {
+    //    정렬된 배열이 주어지고 값을 입력받아서 배열안에 들어있는 값인지 확인
+    public void run(int... a) {
         int left = 0;
         int right = a.length - 1;
         int pos = -1;
 
         Scanner scn = new Scanner(System.in);
-        int x = scn.nextInt();
+        int input = scn.nextInt();
         scn.close();
 
+        printIntArray(a);
         while (pos == -1 && left <= right) {
             int middle = (left + right) / 2;
-            if (a[middle] == x) {
-                pos = middle;
-            } else if (a[middle] > x) {
+            if (input < a[middle]) {
                 right = middle - 1;
-            } else {
+            } else if (a[middle] < input) {
                 left = middle + 1;
+            } else {
+                pos = middle;
             }
         }
-
-        System.out.println("pos : " + pos);
+        System.out.printf("pos : %d\n", pos);
     }
 }

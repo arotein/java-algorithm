@@ -5,7 +5,7 @@ public class InsertionSort extends PrintArray {
         int temp, out, in;
 
         System.out.println("정렬 전 배열");
-        printArray(a);
+        printIntArray(a);
 
         for (out = 1; out < a.length; out++) {
             temp = a[out];
@@ -20,7 +20,7 @@ public class InsertionSort extends PrintArray {
         }
 
         System.out.println("삽입정렬 후 배열");
-        printArray(a);
+        printIntArray(a);
     }
 
     public void ch(int... ch) {
