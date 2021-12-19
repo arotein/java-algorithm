@@ -8,9 +8,6 @@ public class QuickSort {
         right = tail;
 
         while (true) {
-            if (left >= right) {
-                break;
-            }
 
             while (left < tail && a[head] > a[left]) {
                 left++;
@@ -18,6 +15,10 @@ public class QuickSort {
 
             while (a[head] < a[right]) {
                 right--;
+            }
+
+            if (left >= right) {
+                break;
             }
             temp = a[right];
             a[right] = a[left];

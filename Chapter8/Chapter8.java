@@ -8,7 +8,7 @@ public class Chapter8 {
 //        result = recur.factorial(15);
 //        System.out.println(result);
 
-        int[] a = {4, 7, 1, 6, 2, 5, 3};
+        int[] a = {4, 7, 1, 6, 2, 5, 3, 0};
 
         PrintArray pa = new PrintArray();
         pa.printIntArray(a);
